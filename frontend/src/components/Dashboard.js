@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [searchDate, setSearchDate] = useState('');
 
   const fetchTransactions = async (date = '') => {
-    let url = '/transactions';
+    let url = '/';
     if (date) url += `?date=${date}`;
     const res = await api.get(url);
     setTransactions(res.data);
@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await api.post('/transactions', form);
+    await api.post('/', form);
     setForm({ description: '', amount: '' });
     fetchTransactions();
   };
