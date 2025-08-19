@@ -4,9 +4,17 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+
+const allowedOrigins = [
+  'https://finance-seven-sandy.vercel.app',
+  'http://localhost:3000'
+];
+
 app.use(cors({
-  origin: 'https://finance-seven-sandy.vercel.app'
+  origin: allowedOrigins,
+  credentials: true
 }));
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -18,6 +26,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 const transactionRoutes = require('./routes/transactions');
 app.use('/api/transactions', transactionRoutes);
 
+
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
