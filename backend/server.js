@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 
 const allowedOrigins = [
-  'https://finance-seven-sandy.vercel.app',
+  'https://finance-frontend-o24e.onrender.com',
   'http://localhost:3000'
 ];
 
